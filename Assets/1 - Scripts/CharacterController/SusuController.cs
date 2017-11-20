@@ -191,8 +191,8 @@ public class WallGrab : SKState<SusuController>
 
         if (jumpBtn)
         {
-            if ((leftCollision && rightBtn) ||
-                (!leftCollision && leftBtn))
+            if ((leftCollision && !leftBtn) ||
+                (!leftCollision && !rightBtn))
                 _machine.changeState<Jump>();
             else
                 _machine.changeState<WallJump>();
