@@ -100,7 +100,7 @@ public class Walk : SKState<SusuController>
 
         if (!_context.inputState.GetButton(moveRight) && !_context.inputState.GetButton(moveLeft) && _context.body.Velocity.x == 0.0f)
             _machine.changeState<Idle>();
-
+        
         if (!_context.body.collisionInfo.down)
             _machine.changeState<Fall>();
     }
