@@ -1,0 +1,13 @@
+---TAMANHO----
+1 tile
+
+---POSICAO---
+um pouco para baixo do topo do tile que esta posicionado (de forma que de overlap entre o tile e ele, ele na frente) 
+
+---MECANICA---
+fica em idle (sleep) ateh que o player (sussu) toque nele, e dai ele acorda (boitata nao acorda ele)
+
+---ANIMACOES---
+
+SLEEP = ping-pong, 1>2>3>4>5>4>3>2>1 
+wake = normal, toca assim que o player toca (da overlap) no sprite dele com o sprite do sussu 

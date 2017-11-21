@@ -1,0 +1,14 @@
+---TAMANHO----
+maior que 2 tiles de altura (menor que tres) 
+
+---MECANICA---
+DARK - fica parado ateh que o player chegue proximo dele (alguns diles de distancia), quando isso acontece ele avanca na direcao do player, contato com qualquer parte do corpo dele da dano 
+
+LIGHT - fica parado, SOLIDO, pode ser usado de plataforma mas tambem bloqueia caminho do player
+
+---ANIMACOES---
+
+Idle = quando estiver parado 
+Turn idle to run = transicao entre idle e run, ele vira pra direcao do jogador e nao se mexe ainda
+RUN = corre na direcao do jogador
+Turn run to idel = transicao de volta para idle depois de bater em algo

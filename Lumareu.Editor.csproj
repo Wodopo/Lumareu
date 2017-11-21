@@ -244,9 +244,6 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -307,9 +304,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\2 - Shaders\AlphaMask.shader" />
+    <None Include="Assets\3 - Graphics\Enemies\Boi\notas BOI.txt" />
+    <None Include="Assets\3 - Graphics\Filhote\notas FILHOTE.txt" />
     <None Include="Assets\4 - Sounds\Blank.txt" />
     <None Include="Assets\5 - Materials\Blank.txt" />
-    <None Include="Assets\6 - Animations\Blank.txt" />
     <None Include="Assets\7 - Scriptable Objects\Blank.txt" />
     <None Include="Assets\8 - Prefabs\Blank.txt" />
     <None Include="Assets\9 - Others\Blank.txt" />
