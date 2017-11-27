@@ -10,19 +10,14 @@ public class SusuController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     [Header("Setup")]
-    public float xGroundSpeed = 5.0f;
-    public float xAirSpeed = 5.0f;
-    public float jumpForce = 15.0f;
-    public float xGroundAcceleration = 50.0f;
-    public float xAirAcceleration = 50.0f;
+    public CharacterConfig defaultConfig;
 
     [Header("States Setup")]
     public Idle idleState;
     public Walk walkState;
     public Jump jumpState;
     public Fall fallState;
-
-
+    
     // Hashes
     [HideInInspector] public int WalkHash = Animator.StringToHash("Walking");
     [HideInInspector] public int GroundedHash = Animator.StringToHash("Grounded");
@@ -110,9 +105,9 @@ public class Walk : SKState<SusuController>
         float desiredX = 0.0f;
         desiredX += _context.inputState.GetButton(moveRight) ? 1.0f : 0.0f;
         desiredX += _context.inputState.GetButton(moveLeft) ? -1.0f : 0.0f;
-        desiredX *= _context.xGroundSpeed;
+        desiredX *= _context.defaultConfig.horizontalGroundSpeed;
 
-        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.xGroundAcceleration);
+        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.defaultConfig.horizontalGroundAcceleration);
 
         if (Mathf.Abs(desiredX) > 0.0f)
             _context.transform.localScale = Vector3.one + Vector3.right * (desiredX < 0.0f ? -2f : 0f);
@@ -134,7 +129,7 @@ public class Jump : SKState<SusuController>
         
     public override void begin()
     {
-        _context.body.Velocity.y = _context.jumpForce;
+        _context.body.Velocity.y = _context.defaultConfig.jumpForce;
 
         _context.animator.SetBool(_context.JumpingHash, true);
         _context.animator.SetBool(_context.GroundedHash, false);
@@ -157,9 +152,9 @@ public class Jump : SKState<SusuController>
         float desiredX = 0.0f;
         desiredX += _context.inputState.GetButton(moveRight) ? 1.0f : 0.0f;
         desiredX += _context.inputState.GetButton(moveLeft) ? -1.0f : 0.0f;
-        desiredX *= _context.xAirSpeed;
+        desiredX *= _context.defaultConfig.horizontalAirSpeed;
         
-        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.xAirAcceleration);
+        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.defaultConfig.horizontalAirAcceleration);
 
         if (Mathf.Abs(desiredX) > 0.0f)
             _context.transform.localScale = Vector3.one + Vector3.right * (desiredX < 0.0f ? -2f : 0f);
@@ -211,9 +206,9 @@ public class Fall : SKState<SusuController>
         float desiredX = 0.0f;
         desiredX += _context.inputState.GetButton(moveRight) ? 1.0f : 0.0f;
         desiredX += _context.inputState.GetButton(moveLeft) ? -1.0f : 0.0f;
-        desiredX *= _context.xAirSpeed;
+        desiredX *= _context.defaultConfig.horizontalAirSpeed;
 
-        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.xAirAcceleration);
+        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.defaultConfig.horizontalAirAcceleration);
 
         if (Mathf.Abs(desiredX) > 0.0f)
             _context.transform.localScale = Vector3.one + Vector3.right * (desiredX < 0.0f ? -2f : 0f);
