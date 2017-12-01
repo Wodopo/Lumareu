@@ -240,14 +240,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\1 - Scripts\BlockController.cs" />
     <Compile Include="Assets\1 - Scripts\CharacterController\Backup\SusuController_PreAnimations.cs" />
     <Compile Include="Assets\1 - Scripts\CharacterController\SusuController.cs" />
-    <Compile Include="Assets\1 - Scripts\EdgeCollider2DSpriteSnaper.cs" />
     <Compile Include="Assets\1 - Scripts\InputManager\InputManager.cs" />
     <Compile Include="Assets\1 - Scripts\InputManager\InputState.cs" />
     <Compile Include="Assets\1 - Scripts\PhysicsObject.cs" />
     <Compile Include="Assets\1 - Scripts\ScriptableObjects\CharacterConfig.cs" />
     <Compile Include="Assets\1 - Scripts\TripletCameras.cs" />
+    <Compile Include="Assets\1 - Scripts\Utilities\EdgeCollider2DSpriteSnaper.cs" />
     <Compile Include="Assets\AmplifyColor\Plugins\AmplifyColorBase.cs" />
     <Compile Include="Assets\AmplifyColor\Plugins\AmplifyColorEffect.cs" />
     <Compile Include="Assets\AmplifyColor\Plugins\AmplifyColorTriggerProxy.cs" />

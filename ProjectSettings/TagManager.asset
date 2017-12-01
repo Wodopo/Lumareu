@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Light
+  - InnerLight
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - MultiWorld - 1
   - MultiWorld - 2
   - MultiWorld - 3
-  - 
+  - Active
   - 
   - 
   - 
