@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/0 - Scenes/Tests/Test - Character Interactions.unity
+- path: Assets/0 - Scenes/Tests/Test - Collisions.unity
   isLoaded: 1
   isActive: 1

@@ -5,7 +5,8 @@ using Wodopo.Engine2D;
 public class SusuController : MonoBehaviour
 {
     public InputState inputState;
-    public PhysicsObject body;
+    //public PhysicsObject body;
+    public Rigidbody2D body2D;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
@@ -42,7 +43,7 @@ public class SusuController : MonoBehaviour
     {
         _machine.update(Time.deltaTime);
 
-        animator.SetFloat(YHash, body.Velocity.y);
+        animator.SetFloat(YHash, body2D.velocity.y);
     }
 }
 
@@ -67,7 +68,7 @@ public class Idle : SKState<SusuController>
         if (_context.inputState.GetButton(moveRight) || _context.inputState.GetButton(moveLeft))
             _machine.changeState<Walk>();
 
-        if (!_context.body.collisionInfo.down)
+        if (_context.body2D.velocity.y < 0.0f)
             _machine.changeState<Fall>();
     }
 
@@ -93,10 +94,10 @@ public class Walk : SKState<SusuController>
         if (_context.inputState.GetButtonDown(jump))
             _machine.changeState<Jump>();
 
-        if (!_context.inputState.GetButton(moveRight) && !_context.inputState.GetButton(moveLeft) && _context.body.Velocity.x == 0.0f)
+        if (!_context.inputState.GetButton(moveRight) && !_context.inputState.GetButton(moveLeft) && _context.body2D.velocity.x == 0.0f)
             _machine.changeState<Idle>();
-        
-        if (!_context.body.collisionInfo.down)
+
+        if (_context.body2D.velocity.y < 0.0f)
             _machine.changeState<Fall>();
     }
 
@@ -107,7 +108,8 @@ public class Walk : SKState<SusuController>
         desiredX += _context.inputState.GetButton(moveLeft) ? -1.0f : 0.0f;
         desiredX *= _context.defaultConfig.horizontalGroundSpeed;
 
-        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.defaultConfig.horizontalGroundAcceleration);
+        Vector2 desiredV = new Vector2(desiredX, _context.body2D.velocity.y);
+        _context.body2D.velocity = Vector2.MoveTowards(_context.body2D.velocity, desiredV, Time.deltaTime * _context.defaultConfig.horizontalGroundAcceleration);
 
         if (Mathf.Abs(desiredX) > 0.0f)
             _context.transform.localScale = Vector3.one + Vector3.right * (desiredX < 0.0f ? -2f : 0f);
@@ -129,7 +131,7 @@ public class Jump : SKState<SusuController>
         
     public override void begin()
     {
-        _context.body.Velocity.y = _context.defaultConfig.jumpForce;
+        _context.body2D.velocity = new Vector2(_context.body2D.velocity.x, _context.defaultConfig.jumpForce);
 
         _context.animator.SetBool(_context.JumpingHash, true);
         _context.animator.SetBool(_context.GroundedHash, false);
@@ -137,8 +139,8 @@ public class Jump : SKState<SusuController>
 
     public override void reason()
     {
-        bool moving = _context.inputState.GetButton(moveRight) || _context.inputState.GetButton(moveLeft) || _context.body.Velocity.x != 0.0f;
-        if (_context.body.collisionInfo.down)
+        bool moving = _context.inputState.GetButton(moveRight) || _context.inputState.GetButton(moveLeft) || _context.body2D.velocity.x != 0.0f;
+        if (_context.body2D.velocity.y == 0.0f)
         {
             if (moving)
                 _machine.changeState<Walk>();
@@ -154,7 +156,9 @@ public class Jump : SKState<SusuController>
         desiredX += _context.inputState.GetButton(moveLeft) ? -1.0f : 0.0f;
         desiredX *= _context.defaultConfig.horizontalAirSpeed;
         
-        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.defaultConfig.horizontalAirAcceleration);
+
+        Vector2 desiredV = new Vector2(desiredX, _context.body2D.velocity.y);
+        _context.body2D.velocity = Vector2.MoveTowards(_context.body2D.velocity, desiredV, Time.deltaTime * _context.defaultConfig.horizontalAirAcceleration);
 
         if (Mathf.Abs(desiredX) > 0.0f)
             _context.transform.localScale = Vector3.one + Vector3.right * (desiredX < 0.0f ? -2f : 0f);
@@ -187,12 +191,12 @@ public class Fall : SKState<SusuController>
 
     public override void reason()
     {
-        bool moving = _context.inputState.GetButton(moveRight) || _context.inputState.GetButton(moveLeft) || _context.body.Velocity.x != 0.0f;
+        bool moving = _context.inputState.GetButton(moveRight) || _context.inputState.GetButton(moveLeft) || _context.body2D.velocity.x != 0.0f;
 
         if (_context.inputState.GetButtonDown(jump) && timer <= canJumpTime)
             _machine.changeState<Jump>();
 
-        if (_context.body.collisionInfo.down)
+        if (_context.body2D.velocity.y == 0.0f)
         {
             if (moving)
                 _machine.changeState<Walk>();
@@ -208,7 +212,8 @@ public class Fall : SKState<SusuController>
         desiredX += _context.inputState.GetButton(moveLeft) ? -1.0f : 0.0f;
         desiredX *= _context.defaultConfig.horizontalAirSpeed;
 
-        _context.body.Velocity.x = Mathf.MoveTowards(_context.body.Velocity.x, desiredX, Time.deltaTime * _context.defaultConfig.horizontalAirAcceleration);
+        Vector2 desiredV = new Vector2(desiredX, _context.body2D.velocity.y);
+        _context.body2D.velocity = Vector2.MoveTowards(_context.body2D.velocity, desiredV, Time.deltaTime * _context.defaultConfig.horizontalAirAcceleration);
 
         if (Mathf.Abs(desiredX) > 0.0f)
             _context.transform.localScale = Vector3.one + Vector3.right * (desiredX < 0.0f ? -2f : 0f);

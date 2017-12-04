@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalGroundSpeed: 5
   horizontalGroundAcceleration: 50
+  jumpForce: 13
   horizontalAirSpeed: 5
   horizontalAirAcceleration: 50
-  jumpForce: 15
