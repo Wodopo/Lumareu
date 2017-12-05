@@ -13,6 +13,8 @@ public class SusuController : MonoBehaviour
     [Header("Setup")]
     public CharacterConfig defaultConfig;
 
+    public Transform Checkpoint;
+
     [Header("States Setup")]
     public Idle idleState;
     public Walk walkState;
@@ -44,6 +46,11 @@ public class SusuController : MonoBehaviour
         _machine.update(Time.deltaTime);
 
         animator.SetFloat(YHash, body2D.velocity.y);
+    }
+
+    private void OnDeath()
+    {
+        transform.position = Checkpoint.position;
     }
 }
 
