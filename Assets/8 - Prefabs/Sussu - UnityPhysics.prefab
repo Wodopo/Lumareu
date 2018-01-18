@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4568827151426040}
   - component: {fileID: 212446876192081642}
   - component: {fileID: 95500379938838938}
+  - component: {fileID: 50848303498908318}
   - component: {fileID: 61284098633216652}
   - component: {fileID: 114092693636567012}
   - component: {fileID: 114499760140187652}
-  - component: {fileID: 50848303498908318}
   - component: {fileID: 114236224362976156}
   m_Layer: 8
   m_Name: Sussu - UnityPhysics
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196daafbc7822324b8fcebd75a3f53b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
   inputState: {fileID: 114092693636567012}
   body2D: {fileID: 50848303498908318}
   animator: {fileID: 95500379938838938}
@@ -163,6 +164,10 @@ MonoBehaviour:
     moveLeft: 1
     jump: 4
     canJumpTime: -0.1
+  damagedState:
+    pushDirection: {x: 1, y: 1}
+    pushBackForce: 10
+    pushBackTime: 0.25
   WalkHash: 1744665739
   GroundedHash: 862969536
   JumpingHash: 1137391654

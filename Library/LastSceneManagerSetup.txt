@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/0 - Scenes/Tests/Test - Collisions.unity
+- path: Assets/0 - Scenes/Tests/Test - Camera Rig.unity
   isLoaded: 1
   isActive: 1

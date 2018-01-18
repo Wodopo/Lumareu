@@ -112,7 +112,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &278499459
+--- !u!1001 &1040699047
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -318,7 +318,7 @@ MonoBehaviour:
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114092693636567012, guid: 7cb18076cc955f440bd331d9dc258b3f,
     type: 2}
-  m_PrefabInternal: {fileID: 278499459}
+  m_PrefabInternal: {fileID: 1040699047}
   m_Script: {fileID: 11500000, guid: 380617b511c194846a30b20433e870b7, type: 3}
 --- !u!1001 &1701124686
 Prefab:

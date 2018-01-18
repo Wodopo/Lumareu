@@ -1,9 +1,11 @@
+using System;
 using Prime31.StateKit;
 using UnityEngine;
 using Wodopo.Engine2D;
 
 public class SusuController : MonoBehaviour
 {
+    public Health health;
     public InputState inputState;
     //public PhysicsObject body;
     public Rigidbody2D body2D;
@@ -18,7 +20,8 @@ public class SusuController : MonoBehaviour
     public Walk walkState;
     public Jump jumpState;
     public Fall fallState;
-    
+    public DamagedState damagedState;
+
     // Hashes
     [HideInInspector] public int WalkHash = Animator.StringToHash("Walking");
     [HideInInspector] public int GroundedHash = Animator.StringToHash("Grounded");
@@ -32,11 +35,19 @@ public class SusuController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        health = GetComponent<Health>();
+        health.onTakeDamage += TakeDamage;
 
         _machine = new SKStateMachine<SusuController>(this, idleState);
         _machine.addState(walkState);
         _machine.addState(jumpState);
         _machine.addState(fallState);
+        _machine.addState(damagedState);
+    }
+
+    private void TakeDamage()
+    {
+        _machine.changeState<DamagedState>();
     }
 
     private void Update()
@@ -219,5 +230,46 @@ public class Fall : SKState<SusuController>
             _context.transform.localScale = Vector3.one + Vector3.right * (desiredX < 0.0f ? -2f : 0f);
 
         timer += deltaTime;
+    }
+}
+
+
+[System.Serializable]
+public class DamagedState : SKState<SusuController>
+{
+    [Header("Setup")]
+    public Vector2 pushDirection;
+    public float pushBackForce = 2.0f;
+    public float pushBackTime = .25f;
+
+    private float timer;
+
+    public override void begin()
+    {
+        timer = 0.0f;
+        _context.animator.SetBool(_context.GroundedHash, false);
+        float pushX = pushDirection.x * - Mathf.Sign(_context.transform.localScale.x);
+        float pushY = pushDirection.y;
+        _context.body2D.velocity = new Vector2(pushX, pushY).normalized * pushBackForce;
+    }
+
+    public override void reason()
+    {
+        if (timer >= pushBackTime)
+            if (_context.body2D.velocity.y == 0.0f)
+                _machine.changeState<Idle>();
+            else
+                _machine.changeState<Fall>();
+
+    }
+
+    public override void update(float deltaTime)
+    {
+        timer += deltaTime;
+    }
+
+    public override void end()
+    {
+        _context.body2D.velocity = Vector2.zero;
     }
 }
