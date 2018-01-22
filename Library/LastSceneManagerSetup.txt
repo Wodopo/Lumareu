@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/0 - Scenes/Tests/Test - Camera Rig.unity
+- path: Assets/0 - Scenes/Tests/Test - Baby Wolf.unity
   isLoaded: 1
   isActive: 1
