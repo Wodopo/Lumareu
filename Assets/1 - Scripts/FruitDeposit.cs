@@ -37,6 +37,15 @@ public class FruitDeposit : MonoBehaviour
         currentFruits.onValueChange -= UpdateSprite;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && currentFruits.Value > 0)
+            currentFruits.Value--;
+
+        if (Input.GetKeyDown(KeyCode.S) && currentFruits.Value < 3)
+            currentFruits.Value++;
+    }
+
     private void UpdateSprite()
     {
         switch (currentFruits.Value)
