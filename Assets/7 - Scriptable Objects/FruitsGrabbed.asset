@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _designNotes: 
   _value: 0
-  _useDefaultValue: 0
+  _useDefaultValue: 1
   _defaultValue: 0
