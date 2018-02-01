@@ -6,7 +6,7 @@ public class SimpleMover : MonoBehaviour
     
     void Update()
     {
-        Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized;
 
         Vector2 translation = direction * speed * Time.deltaTime;
 
