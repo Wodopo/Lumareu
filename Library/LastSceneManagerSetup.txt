@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/0 - Scenes/Tests/Test - Fruit.unity
+- path: Assets/0 - Scenes/Tests/Test - Fruit 1.unity
   isLoaded: 1
   isActive: 1

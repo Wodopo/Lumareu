@@ -245,6 +245,7 @@
     <Compile Include="Assets\1 - Scripts\BlockController.cs" />
     <Compile Include="Assets\1 - Scripts\CharacterController\Backup\SusuController_PreAnimations.cs" />
     <Compile Include="Assets\1 - Scripts\CharacterController\ProjectileController.cs" />
+    <Compile Include="Assets\1 - Scripts\CharacterController\ShooterController.cs" />
     <Compile Include="Assets\1 - Scripts\CharacterController\SpikesController.cs" />
     <Compile Include="Assets\1 - Scripts\CharacterController\SusuController.cs" />
     <Compile Include="Assets\1 - Scripts\Effects\MultiCameraEffect.cs" />
